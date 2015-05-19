@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title></title>
+</head>
+
+<body ng-controller="myCtrl">
+    <div  ng-controller="empCtrl">
+    <div class="row top-buffer">
+    <table class="table table-bordered table-striped table-responsive">
+        <thead>
+            <tr>
+               
+                <th>
+                    EmpID
+                </th>
+                <th>
+                   EmpName
+                </th>
+                <th>
+                   EmpEmail
+                </th>
+                 <th>
+                   EmpAge
+                </th>
+ 
+            </tr>
+        </thead>
+        <tbody data-ng-repeat="i in data">
+            <tr>
+                
+                <td>
+                    <textarea class="form-control" style="width: 300px;height: 65px" ng-model="i.Id"></textarea>
+                </td>
+                <td>
+                    <textarea class="form-control" style="width: 300px;height: 65px" ng-model="i.Name"></textarea>
+                </td>
+                <td>
+                    <input type="text" class="form-control" style="width: 150px;height: 65px" ng-model="i.Email" />
+                </td>
+                 <td>
+                    <input type="text" class="form-control" style="width: 150px;height: 65px" ng-model="i.Age" />
+                </td>
+            </tr>
+ 
+        </tbody>
+    </table>
+   
+  <pagination data-total-items="totalItems" ng-model="currentPage" data-max-size="NumberOfPageButtons" class=" pagination-sm" data-boundary-links="true" data-rotate="false" ng-change="pageChanged()" data-items-per-page="recordsPerPage"></pagination>
+ 
+ 
+</div>
+        </div>
+</body>
+</html>

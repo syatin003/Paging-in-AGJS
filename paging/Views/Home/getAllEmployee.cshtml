@@ -1,0 +1,65 @@
+﻿@{
+    Layout = null;
+ }
+<div ng-app="myApp">
+    <div ng-controller="myCtrl">
+
+        <p class="divHead">Employee List</p>
+
+        <p><input ng-model="searching" ng-change="getData()" type="text" placeholder="Filter by Name Or Email"></p>
+        <div class="table-responsive">
+            <table id="tblContainer" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th ng-click="orderByField='Id';reverseSort=!reverseSort">ID</th>
+                        <th ng-click="orderByField='Name';reverseSort=!reverseSort">Name</th>
+                        <th ng-click="orderByField='Email';reverseSort=!reverseSort">Email</th>
+                        <th ng-click="orderByField='Age';reverseSort=!reverseSort">Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="employee in employees | orderBy:orderByField:reverseSort">
+                        <td>
+                            <span ng-bind="employee.Id"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="employee.Name"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="employee.Email"></span>
+
+                        </td>
+                        <td>
+                            <span ng-bind="employee.Age"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class='row-fluid'>
+            @*DropDown SelectRecordsPerPage*@
+            <select ng-model="recordsPerPage" ng-change="pageChanged()">
+                <option value="2">Two Records</option>
+                <option value="5">Five Records</option>
+                <option value="7">Seven Records</option>
+                <option value="10">Ten Records</option>
+            </select>
+            <pagination data-total-items="totalItems" ng-model="currentPage"
+                data-max-size="5" class="pagination-sm"
+                data-boundary-links="true" data-rotate="true" ng-change="pageChanged()"
+                data-items-per-page="recordsPerPage" previous-text="Back"
+                next-text="Next" first-text="First" last-text="Last"></pagination>
+
+            <pager total-items="totalItems" ng-model="currentPage" items-per-page="5" ng-change="pageChanged()"></pager>
+            <pre>Page: {{currentPage}} / {{numPages}}</pre>
+
+            <div class="col-md-6 col-lg-6">
+                <pre style="float: left" class="ng-binding">Showing record: {{srec}} To {{erec}} of {{totalItems}}</pre>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
